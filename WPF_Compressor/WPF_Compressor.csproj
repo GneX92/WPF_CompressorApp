@@ -8,4 +8,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="rar-format.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="rar-format.png" />
+  </ItemGroup>
+
 </Project>
