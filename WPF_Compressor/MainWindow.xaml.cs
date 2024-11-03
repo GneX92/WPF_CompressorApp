@@ -93,10 +93,21 @@ public partial class MainWindow : Window
             if ( !Directory.Exists( savePath ) )
                 Directory.CreateDirectory( savePath );
 
-            using FileStream originalFileStream = File.Open( filePath , FileMode.Open );
-            using FileStream compressedFileStream = File.Create( savePath );
-            using GZipStream compressor = new( compressedFileStream , CompressionMode.Compress );
-            originalFileStream.CopyTo( compressor );
+            //using FileStream originalFileStream = File.Open( filePath , FileMode.Open );
+            //using FileStream compressedFileStream = File.Create( savePath );
+            //using GZipStream compressor = new( compressedFileStream , CompressionMode.Compress );
+            //originalFileStream.CopyTo( compressor );
+
+            using ( FileStream originalFileStream = File.Open( filePath , FileMode.Open ) )
+            {
+                using ( FileStream compressedFileStream = File.Create( savePath ) )
+                {
+                    using ( GZipStream compressor = new( compressedFileStream , CompressionMode.Compress ) )
+                    {
+                        originalFileStream.CopyTo( compressor );
+                    }
+                }
+            }
 
             success = true;
         }
